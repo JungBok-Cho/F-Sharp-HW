@@ -1,11 +1,6 @@
-﻿(* CPSC 3400-01
-   JungBok Cho
+﻿(* JungBok Cho
    F# Assignment 2
-
-   Originality of Code: 
-   I composed this code I wrote based on my understanding of how the features of 
-   the language I am using can be used to implement the algorithm I have chosen 
-   to solve the problem I am addressing. *)
+*)
 
 open System
 
@@ -17,6 +12,7 @@ let rec findNum element vars =
     | (a, b) :: tl -> if char a = element then b
                       else findNum element tl
 
+
 /// checkExpr function will update the stack based on the requested operator
 let checkExpr element vars (stack : int list) = 
     match element with
@@ -27,6 +23,7 @@ let checkExpr element vars (stack : int list) =
     | '$' -> stack.Tail.Head :: stack.Head :: stack.Tail.Tail   /// Swap two values
     | ' ' -> stack                                              /// Skip
     | _   -> (findNum element vars) :: stack                    /// Find value and add to stack
+
 
 /// Postfix Expression Evaluation
 let eval vars expr = 
@@ -42,6 +39,7 @@ let eval vars expr =
                                        let newStack = checkExpr hd vars stack
                                        innerEval vars newStack tl
     innerEval vars [] (Seq.toList expr) 
+
 
 
 /// Provided Codes for Testing by Professor
